@@ -1,5 +1,5 @@
 # 56x56 sprites
-import random, sys, pygame # random is used for the random array generation
+import random, sys, pygame, math # random is used for the random array generation
 # sys is used for the syscall to exit the pygame window
 # pygame is used to draw everything, u will probably have to pip install it
 # pip install pygame
@@ -32,7 +32,9 @@ def drawSprite(s):
 
 		for i in range(len(sprite)):
 			# pygame rectangle object (for each point in the sprite): format: (x, y, width, height)
-			rect = pygame.Rect(buff + (i*bf)%(56*bf), buff + (i*bf)/56, bf, bf)
+			x = buff + (i*bf)%(56*bf)
+			y = buff + bf*math.floor((i)/(56))
+			rect = pygame.Rect(x, y, bf, bf)
 			# the 70s being added to the x, y coordinates translate the rectangle to the center
 			# the draw function actually puts the sprite into the screen
 			c = 255 - sprite[i]*255
