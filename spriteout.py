@@ -7,25 +7,21 @@ import random, sys, pygame # random is used for the random array generation
 
 # initialize a 1d 56x56 array with all 0s
 sprite = [0] * 56 * 56
+bf = 10 # bigness factor
+buff = 30 # buffer
 
 # this is where u should read in the sprite data
 # right now i have a dummy loop creating dummy points
-# for i in range(len(sprite)):
-	# if random.random() > 0.5:
-		# sprite[i] = 1 # this shit kinda makes it look like a qr code ngl
+#for i in range(len(sprite)):
+#	if random.random() > 0.5:
+#		sprite[i] = 1 # this shit kinda makes it look like a qr code ngl
 
 
 # draws a sprite array to the screen using pygame, results in an infinite draw loop
 # 0s output as black, 1s output as white (can be easily changed if u edit the "c" variable for color)
 def drawSprite(s):
 	pygame.init() # initialize the window
-	screen = pygame.display.set_mode([200, 200]) # a surface object to draw to
-	file = open("pokemon.txt", "rt")
-	contents = file.read()
-	file.close()
-	sprite = contents.split()
-	print(sprite)
-
+	screen = pygame.display.set_mode([56*bf + 2*buff, 56*bf + 2*buff]) # a surface object to draw to
 	
 	while 1: # infinite draw loop, passing execution here will stop the rest of ur program
 		for event in pygame.event.get(): # leave this alone, receives the signal for the window to close
@@ -36,7 +32,7 @@ def drawSprite(s):
 
 		for i in range(len(sprite)):
 			# pygame rectangle object (for each point in the sprite): format: (x, y, width, height)
-			rect = pygame.Rect(70 + i%56,  70 + i/56, 1, 1)
+			rect = pygame.Rect(buff + (i*bf)%(56*bf), buff + (i*bf)/56, bf, bf)
 			# the 70s being added to the x, y coordinates translate the rectangle to the center
 			# the draw function actually puts the sprite into the screen
 			if sprite[i] == 0:
@@ -48,6 +44,14 @@ def drawSprite(s):
 		pygame.display.flip() # pushes the screen to be drawn
 		# everything you want drawn needs to stay in the infinite draw loop before the flip function is called
 		# and after the fill function is called
+
+
+
+file = open("pokemon.txt", "rt")
+contents = file.read()
+file.close()
+sprite = contents.split()
+print(sprite)
 
 
 drawSprite(sprite) # call the draw sprite function by passing the sprite array
