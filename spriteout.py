@@ -10,9 +10,9 @@ sprite = [0] * 56 * 56
 
 # this is where u should read in the sprite data
 # right now i have a dummy loop creating dummy points
-for i in range(len(sprite)):
-	if random.random() > 0.5:
-		sprite[i] = 1 # this shit kinda makes it look like a qr code ngl
+# for i in range(len(sprite)):
+	# if random.random() > 0.5:
+		# sprite[i] = 1 # this shit kinda makes it look like a qr code ngl
 
 
 # draws a sprite array to the screen using pygame, results in an infinite draw loop
@@ -20,7 +20,13 @@ for i in range(len(sprite)):
 def drawSprite(s):
 	pygame.init() # initialize the window
 	screen = pygame.display.set_mode([200, 200]) # a surface object to draw to
+	file = open("pokemon.txt", "rt")
+	contents = file.read()
+	file.close()
+	sprite = contents.split()
+	print(sprite)
 
+	
 	while 1: # infinite draw loop, passing execution here will stop the rest of ur program
 		for event in pygame.event.get(): # leave this alone, receives the signal for the window to close
 			if event.type == pygame.QUIT:
@@ -33,7 +39,10 @@ def drawSprite(s):
 			rect = pygame.Rect(70 + i%56,  70 + i/56, 1, 1)
 			# the 70s being added to the x, y coordinates translate the rectangle to the center
 			# the draw function actually puts the sprite into the screen
-			c = sprite[i]*255
+			if sprite[i] == 0:
+                                c = 255
+                        else:
+                                c = 0
 			pygame.draw.rect(screen, [c,c,c], rect) # draw a rect to the surface format: (surface, color tuple, rectangle coordinate object)
 
 		pygame.display.flip() # pushes the screen to be drawn
