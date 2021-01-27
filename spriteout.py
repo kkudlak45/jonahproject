@@ -40,9 +40,9 @@ def drawSprite(s):
 			# the 70s being added to the x, y coordinates translate the rectangle to the center
 			# the draw function actually puts the sprite into the screen
 			if sprite[i] == 0:
-                                c = 255
-                        else:
-                                c = 0
+				c = 255
+			else:
+				c = 0
 			pygame.draw.rect(screen, [c,c,c], rect) # draw a rect to the surface format: (surface, color tuple, rectangle coordinate object)
 
 		pygame.display.flip() # pushes the screen to be drawn
