@@ -8,11 +8,6 @@ import random, sys, pygame # random is used for the random array generation
 # initialize a 1d 56x56 array with all 0s
 sprite = [0] * 56 * 56
 
-# this is where u should read in the sprite data
-# right now i have a dummy loop creating dummy points
-# for i in range(len(sprite)):
-	# if random.random() > 0.5:
-		# sprite[i] = 1 # this shit kinda makes it look like a qr code ngl
 
 
 # draws a sprite array to the screen using pygame, results in an infinite draw loop
