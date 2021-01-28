@@ -30,12 +30,12 @@ def drawSprite(s):
 
 		screen.fill((255, 255, 255)) # fill the screen white
 
-		for i in range(len(sprite)):
+		for i in range(len(s)):
 			# pygame rectangle object (for each point in the sprite): format: (x, y, width, height)
 			rect = pygame.Rect(buff + (i*bf)%(56*bf), buff + (i*bf)/56, bf, bf)
 			# the 70s being added to the x, y coordinates translate the rectangle to the center
 			# the draw function actually puts the sprite into the screen
-			if sprite[i] == '0':
+			if s[i] == '0':
 				c = 255
 			else:
 				c = 0
